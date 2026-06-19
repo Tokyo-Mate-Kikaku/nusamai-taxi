@@ -159,14 +159,16 @@ h1, h2, h3, h4 {
 .logo-mark {
   width: 42px;
   height: 42px;
-  border: 1.5px solid var(--ink);
-  border-radius: var(--radius-s);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--serif);
-  font-size: 20px;
-  font-weight: 700;
+}
+
+.logo-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .logo-text { line-height: 1.25; }
