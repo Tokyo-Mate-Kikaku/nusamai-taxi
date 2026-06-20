@@ -41,6 +41,7 @@ if (menuToggle) {
     const open = headerNav.classList.toggle('open');
     if (headerCta) headerCta.classList.toggle('open', open);
     menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menuToggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
   });
 }
 
@@ -53,6 +54,9 @@ document.querySelectorAll('.header-nav a').forEach(a => {
   a.addEventListener('click', () => {
     headerNav.classList.remove('open');
     if (headerCta) headerCta.classList.remove('open');
-    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+    if (menuToggle) {
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'メニューを開く');
+    }
   });
 });

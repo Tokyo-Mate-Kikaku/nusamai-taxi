@@ -8,7 +8,7 @@
   <meta name="description" content="運賃・介助料・医療機器使用料の料金体系と、具体的な料金シミュレーションをご紹介します。明瞭会計で安心してご依頼いただけます。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -30,11 +30,11 @@
         <a href="guide.html">ご利用案内</a>
         <a href="price.html" class="current">料金</a>
         <a href="about.html">運営者紹介</a>
-        <a href="faq.html">FAQ</a>
+        <a href="faq.html">よくある質問</a>
       </nav>
       <div class="header-cta">
-        <a href="tel:08047694071" class="header-phone"><span class="material-icons">call</span> 080-4769-4071</a>
-        <a href="#" class="header-line"><img src="img/line_icon.png" alt="LINE">LINEで相談する</a>
+        <a href="tel:08047694071" class="header-phone"><span class="material-icons" aria-hidden="true">call</span> 080-4769-4071</a>
+        <a href="https://lin.ee/9xXF9nc" target="_blank" rel="noopener noreferrer" class="header-line"><span class="material-icons" aria-hidden="true">chat_bubble</span>LINEで相談する</a>
       </div>
       <button class="menu-toggle" aria-label="メニューを開く" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -44,7 +44,7 @@
 </header>
 
 <!-- ===== PAGE HERO ===== -->
-<div class="page-hero">
+<div class="page-hero page-hero-accent">
   <div class="container">
     <h1>料金</h1>
     <p>明瞭会計で安心してご利用いただけます。まず「料金の仕組み」をご確認いただき、具体的なシミュレーションでイメージしてください。</p>
@@ -52,7 +52,7 @@
 </div>
 
 <!-- ===== 料金の基本構造 ===== -->
-<section class="section bg-soft">
+<section class="section bg-soft wave-down">
   <div class="section-inner">
     <div class="section-header">
       <h2 class="section-title">料金の基本構造</h2>
@@ -64,19 +64,19 @@
         <h3>運賃</h3>
         <p>距離 ／ 時間</p>
       </div>
-      <div class="price-concept-sep">＋</div>
+      <div class="price-concept-sep" aria-hidden="true">＋</div>
       <div class="price-concept-item">
         <p class="pc-label">B</p>
         <h3>介助料金</h3>
         <p>ストレッチャー等</p>
       </div>
-      <div class="price-concept-sep">＋</div>
+      <div class="price-concept-sep" aria-hidden="true">＋</div>
       <div class="price-concept-item">
         <p class="pc-label">C</p>
         <h3>機器利用料</h3>
         <p>酸素・吸引 等</p>
       </div>
-      <div class="price-concept-sep">＝</div>
+      <div class="price-concept-sep" aria-hidden="true">＝</div>
       <div class="price-concept-item total">
         <p class="pc-label">SUM</p>
         <h3>合計金額</h3>
@@ -107,7 +107,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>メーター運賃（距離制）</td><td class="num">初乗 ◯◯◯円 ／ 以後 ◯◯◯円</td><td>◯m 毎</td></tr>
+          <tr><td>メーター運賃（距離制）</td><td class="num">初乗 ◯◯◯円<span class="num-sep"> ／ </span><br class="num-br">以後 ◯◯◯円</td><td>◯m 毎</td></tr>
           <tr><td>時間制運賃</td><td class="num">30分 ◯,◯◯◯円〜</td><td>待機時間含む</td></tr>
           <tr><td>夜間・早朝割増</td><td class="num">＋◯◯%</td><td>22時〜翌5時</td></tr>
           <tr><td>高速料金・駐車料金</td><td class="num">実費</td><td>領収書添付</td></tr>
@@ -222,13 +222,13 @@
     <div class="footer-cta">
       <div>
         <p class="footer-cta-label">お問い合わせ・ご相談はこちら</p>
-        <div class="footer-cta-tel"><span class="material-icons">call</span> 080-4769-4071</div>
+        <div class="footer-cta-tel"><span class="material-icons" aria-hidden="true">call</span> 080-4769-4071</div>
         <p class="footer-cta-hours">24時間受付</p>
         <p class="footer-cta-hours">定休日：ご予約をのぞき日曜日</p>
       </div>
       <div class="footer-cta-actions">
-        <a href="tel:08047694071" class="btn btn-dark btn-lg"><span class="material-icons">call</span> 電話する</a>
-        <a href="#" class="btn btn-ghost btn-lg">LINE で送る</a>
+        <a href="tel:08047694071" class="btn btn-dark btn-lg"><span class="material-icons" aria-hidden="true">call</span> 電話する</a>
+        <a href="https://lin.ee/9xXF9nc" target="_blank" rel="noopener noreferrer" class="btn btn-line btn-lg"><span class="material-icons" aria-hidden="true">chat_bubble</span>LINE で送る</a>
       </div>
     </div>
   </div>
@@ -251,7 +251,7 @@
         <a href="guide.html">ご利用案内</a>
         <a href="price.html">料金</a>
         <a href="about.html">運営者紹介</a>
-        <a href="faq.html">よくあるご質問</a>
+        <a href="faq.html">よくある質問</a>
       </nav>
     </div>
     <p class="footer-bottom">© <span id="copyright-year">2026</span> 福祉タクシーぬさまい. All rights reserved.</p>
@@ -260,8 +260,8 @@
 
 <!-- ===== FLOATING CTA ===== -->
 <div class="floating-cta" aria-label="お問い合わせ">
-  <a href="tel:08047694071" class="floating-phone" aria-label="電話する"><span class="material-icons">call</span></a>
-  <a href="#" class="floating-line" aria-label="LINEで連絡"><img src="img/line_icon.png" alt="LINE"></a>
+  <a href="tel:08047694071" class="floating-phone" aria-label="電話する"><span class="material-icons" aria-hidden="true">call</span></a>
+  <a href="https://lin.ee/9xXF9nc" target="_blank" rel="noopener noreferrer" class="floating-line" aria-label="LINEで連絡"><img src="img/LINE_Brand_icon.png" alt="LINE"></a>
 </div>
 
 <script src="js/main.js"></script>

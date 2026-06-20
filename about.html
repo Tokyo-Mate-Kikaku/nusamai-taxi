@@ -8,7 +8,7 @@
   <meta name="description" content="50代で介護タクシーを開業した代表のストーリー。建設業の安全管理・精密操作の経験が、民間救急の搬送技術に活きています。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -30,11 +30,11 @@
         <a href="guide.html">ご利用案内</a>
         <a href="price.html">料金</a>
         <a href="about.html" class="current">運営者紹介</a>
-        <a href="faq.html">FAQ</a>
+        <a href="faq.html">よくある質問</a>
       </nav>
       <div class="header-cta">
-        <a href="tel:08047694071" class="header-phone"><span class="material-icons">call</span> 080-4769-4071</a>
-        <a href="#" class="header-line"><img src="img/line_icon.png" alt="LINE">LINEで相談する</a>
+        <a href="tel:08047694071" class="header-phone"><span class="material-icons" aria-hidden="true">call</span> 080-4769-4071</a>
+        <a href="https://lin.ee/9xXF9nc" target="_blank" rel="noopener noreferrer" class="header-line"><span class="material-icons" aria-hidden="true">chat_bubble</span>LINEで相談する</a>
       </div>
       <button class="menu-toggle" aria-label="メニューを開く" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -45,16 +45,15 @@
 
 <!-- ===== COVER ===== -->
 <div class="about-cover">
-  <div class="img-label-small">代表写真（大判）</div>
   <div class="about-cover-caption">
-    <span class="feature-tag">FEATURE vol.01</span>
+    <span class="feature-tag">About Me</span>
     <h2>50代で、なぜ介護タクシーを始めたのか。</h2>
-    <p>— 福祉タクシーぬさまい 代表 ◯◯ ◯◯</p>
+    <p>— 福祉タクシーぬさまい 代表 浦上　猛</p>
   </div>
 </div>
 
 <!-- ===== 導入 ===== -->
-<section class="section bg-soft">
+<section class="section bg-soft wave-down">
   <div class="section-inner">
     <div class="section-header">
       <h2 class="section-title">はじめに</h2>
@@ -111,7 +110,7 @@
     </div>
     <div class="quote-block" style="margin-bottom: 20px;">「私を救ってくれた第二の故郷への恩返し。それが私の使命です。」</div>
     <p style="font-size: 14.5px; color: var(--text-2); line-height: 1.9; max-width: 700px;">
-      私は益子町の出身ではありません。しかし、北海道から12年前に真岡市に住み、4年前に益子町で家を建てました。この町をとても愛しています。<br>実は、家族にも私にも色々あり落ち込んでいた時期に、両親と共に益子町へ引っ越してきました。不思議なことに私も両親も益子町の水が合い、再び上向きの人生を歩むことが出来ました。今では大切な第二の故郷です。<br>この町に恩返しをすることこそが私の使命だと思っています。この町で医療搬送に困っている方がいる限り、私は全力で対応します。一件一件の搬送を、大切な出会いとして受け止めています。
+      私は益子町の出身ではありません。しかし、北海道から12年前に真岡市に住み、4年前に益子町で家を建てました。この町をとても愛しています。<br>実は、家族にも私にも色々あり落ち込んでいた時期に、両親と共にこの町へ引っ越してきました。不思議なことに私も両親も益子町の水が合い、再び上向きの人生を歩むことが出来ました。今では大切な第二の故郷です。<br>この町に恩返しをすることこそが私の使命だと思っています。この町で医療搬送に困っている方がいる限り、私は全力で対応します。一件一件の搬送を、大切な出会いとして受け止めています。
     </p>
   </div>
 </section>
@@ -123,9 +122,7 @@
       <h2 class="section-title">プロフィール</h2>
     </div>
     <div class="profile-grid">
-      <div class="profile-img">
-        <span>顔写真</span>
-      </div>
+      <div class="profile-img" style="background-image: url('img/profile_dummy.png'); background-size: cover; background-position: center 20%;"></div>
       <div class="profile-detail">
         <div class="profile-name-row">
           <p class="profile-name-label">氏名</p>
@@ -134,12 +131,14 @@
         <hr class="divider">
         <div>
           <p class="profile-section-label">経歴</p>
-          <p class="profile-career">
-            建設業 現場幹部として長年従事<br>
-            2024年12月 介護タクシー開業準備開始・資格取得<br>
-            2025年 7月 民間救急（患者等搬送事業者）認定取得<br>
-            2025年 8月 福祉タクシーぬさまい 開業
-          </p>
+          <ol class="timeline">
+            <li><span class="t-date">19xx</span><span class="t-text">釧路に生まれる</span></li>
+            <li><span class="t-date">2014</span><span class="t-text">真岡市に移住</span></li>
+            <li><span class="t-date">〜2024</span><span class="t-text">建設業 現場幹部として長年従事</span></li>
+            <li><span class="t-date">2024.12</span><span class="t-text">介護タクシー開業準備・資格取得を開始</span></li>
+            <li><span class="t-date">2025.07</span><span class="t-text">民間救急（患者等搬送事業者）認定取得</span></li>
+            <li><span class="t-date">2025.08</span><span class="t-text">福祉タクシーぬさまい 開業</span></li>
+          </ol>
         </div>
         <hr class="divider">
         <div>
@@ -163,13 +162,13 @@
     <div class="footer-cta">
       <div>
         <p class="footer-cta-label">お問い合わせ・ご相談はこちら</p>
-        <div class="footer-cta-tel"><span class="material-icons">call</span> 080-4769-4071</div>
+        <div class="footer-cta-tel"><span class="material-icons" aria-hidden="true">call</span> 080-4769-4071</div>
         <p class="footer-cta-hours">24時間受付</p>
         <p class="footer-cta-hours">定休日：ご予約をのぞき日曜日</p>
       </div>
       <div class="footer-cta-actions">
-        <a href="tel:08047694071" class="btn btn-dark btn-lg"><span class="material-icons">call</span> 電話する</a>
-        <a href="#" class="btn btn-ghost btn-lg">LINE で送る</a>
+        <a href="tel:08047694071" class="btn btn-dark btn-lg"><span class="material-icons" aria-hidden="true">call</span> 電話する</a>
+        <a href="https://lin.ee/9xXF9nc" target="_blank" rel="noopener noreferrer" class="btn btn-line btn-lg"><span class="material-icons" aria-hidden="true">chat_bubble</span>LINE で送る</a>
       </div>
     </div>
   </div>
@@ -192,7 +191,7 @@
         <a href="guide.html">ご利用案内</a>
         <a href="price.html">料金</a>
         <a href="about.html">運営者紹介</a>
-        <a href="faq.html">よくあるご質問</a>
+        <a href="faq.html">よくある質問</a>
       </nav>
     </div>
     <p class="footer-bottom">© <span id="copyright-year">2026</span> 福祉タクシーぬさまい. All rights reserved.</p>
@@ -201,8 +200,8 @@
 
 <!-- ===== FLOATING CTA ===== -->
 <div class="floating-cta" aria-label="お問い合わせ">
-  <a href="tel:08047694071" class="floating-phone" aria-label="電話する"><span class="material-icons">call</span></a>
-  <a href="#" class="floating-line" aria-label="LINEで連絡"><img src="img/line_icon.png" alt="LINE"></a>
+  <a href="tel:08047694071" class="floating-phone" aria-label="電話する"><span class="material-icons" aria-hidden="true">call</span></a>
+  <a href="https://lin.ee/9xXF9nc" target="_blank" rel="noopener noreferrer" class="floating-line" aria-label="LINEで連絡"><img src="img/LINE_Brand_icon.png" alt="LINE"></a>
 </div>
 
 <script src="js/main.js"></script>
