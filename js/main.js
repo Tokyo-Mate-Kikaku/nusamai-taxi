@@ -44,6 +44,10 @@ if (menuToggle) {
   });
 }
 
+/* --- Copyright year --- */
+const yearEl = document.getElementById('copyright-year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
 /* Close mobile menu on nav link click */
 document.querySelectorAll('.header-nav a').forEach(a => {
   a.addEventListener('click', () => {

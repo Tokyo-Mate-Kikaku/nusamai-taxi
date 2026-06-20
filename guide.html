@@ -8,7 +8,8 @@
   <meta name="description" content="ストレッチャー搬送・酸素対応・院内介助など対応機材と利用の流れをご案内します。益子町・芳賀郡を中心に栃木県全域に対応。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -32,8 +33,8 @@
         <a href="faq.html">FAQ</a>
       </nav>
       <div class="header-cta">
-        <a href="tel:08047694071" class="header-phone">☎ 080-4769-4071</a>
-        <a href="#" class="header-line">LINE</a>
+        <a href="tel:08047694071" class="header-phone"><span class="material-icons">call</span> 080-4769-4071</a>
+        <a href="#" class="header-line"><img src="img/line_icon.png" alt="LINE">LINEで相談する</a>
       </div>
       <button class="menu-toggle" aria-label="メニューを開く" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -169,14 +170,14 @@
         <span class="step-num">1</span>
         <div class="step-body">
           <strong>お問い合わせ</strong>
-          <p>患者様のご状態、出発地・目的地、ご希望の時間帯をヒアリングします。お電話のほか FAX・メール・LINE でも受け付けております。</p>
+          <p>患者様のご状態、出発地・目的地、ご希望の時間帯をヒアリングします。お電話のほか LINE でも受け付けております。</p>
         </div>
       </div>
       <div class="step-item">
         <span class="step-num">2</span>
         <div class="step-body">
           <strong>お見積もり・搬送計画のご提案</strong>
-          <p>概算料金とルート、必要機材、所要時間をご提示します。MSW の方への書類対応も承ります。</p>
+          <p>概算料金とルート、必要機材、所要時間をご提示します。</p>
         </div>
       </div>
       <div class="step-item">
@@ -190,7 +191,7 @@
         <span class="step-num">4</span>
         <div class="step-body">
           <strong>病院・施設への確実な引き継ぎ</strong>
-          <p>受け入れ先スタッフへの口頭・書類での引き継ぎまで対応します。搬送完了後、ご依頼者への報告も行います。</p>
+          <p>受け入れ先施設での院内介助・引き継ぎまで対応します。搬送完了後、ご依頼者様へのご報告も行います。</p>
         </div>
       </div>
     </div>
@@ -207,16 +208,16 @@
       <div class="area-detail">
         <dl>
           <div class="area-row">
-            <dt>中心エリア（拠点）</dt>
+            <dt>拠点</dt>
             <dd>栃木県芳賀郡益子町</dd>
           </div>
           <div class="area-row">
-            <dt>通常対応エリア</dt>
-            <dd>真岡市、益子町、芳賀町、市貝町、茂木町の一市四町</dd>
+            <dt>対応エリア</dt>
+            <dd>栃木県内発着であれば国内各地まで対応可能です。</dd>
           </div>
           <div class="area-row">
             <dt>広域搬送</dt>
-            <dd>県外も応相談（事前お見積もり）</dd>
+            <dd>長距離・広域の移送はお早めにご相談ください（事前お見積もり）</dd>
           </div>
         </dl>
         <p style="font-size:13px; color:var(--muted); margin-top:8px;">※ 詳しいエリアや長距離搬送については、まずはお電話にてご相談ください。</p>
@@ -232,11 +233,12 @@
     <div class="footer-cta">
       <div>
         <p class="footer-cta-label">お問い合わせ・ご相談はこちら</p>
-        <div class="footer-cta-tel">☎ 080-4769-4071</div>
+        <div class="footer-cta-tel"><span class="material-icons">call</span> 080-4769-4071</div>
         <p class="footer-cta-hours">24時間受付</p>
+        <p class="footer-cta-hours">定休日：ご予約をのぞき日曜日</p>
       </div>
       <div class="footer-cta-actions">
-        <a href="tel:08047694071" class="btn btn-dark btn-lg">☎ 電話する</a>
+        <a href="tel:08047694071" class="btn btn-dark btn-lg"><span class="material-icons">call</span> 電話する</a>
         <a href="#" class="btn btn-ghost btn-lg">LINE で送る</a>
       </div>
     </div>
@@ -263,14 +265,14 @@
         <a href="faq.html">よくあるご質問</a>
       </nav>
     </div>
-    <p class="footer-bottom">© 2025 福祉タクシーぬさまい. All rights reserved.</p>
+    <p class="footer-bottom">© <span id="copyright-year">2026</span> 福祉タクシーぬさまい. All rights reserved.</p>
   </div>
 </footer>
 
 <!-- ===== FLOATING CTA ===== -->
 <div class="floating-cta" aria-label="お問い合わせ">
-  <a href="tel:08047694071" class="floating-phone" aria-label="電話する">☎</a>
-  <a href="#" class="floating-line" aria-label="LINEで連絡">LINE</a>
+  <a href="tel:08047694071" class="floating-phone" aria-label="電話する"><span class="material-icons">call</span></a>
+  <a href="#" class="floating-line" aria-label="LINEで連絡"><img src="img/line_icon.png" alt="LINE"></a>
 </div>
 
 <script src="js/main.js"></script>

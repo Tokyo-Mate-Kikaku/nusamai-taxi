@@ -19,7 +19,7 @@
 
   --serif:      'Noto Serif JP', serif;
   --sans:       'Noto Sans JP', sans-serif;
-  --mono:       'JetBrains Mono', 'Courier New', monospace;
+  --mono:       'Lato', sans-serif;
 
   --radius-s:   4px;
   --radius:     8px;
@@ -204,8 +204,11 @@ h1, h2, h3, h4 {
 }
 
 .header-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-family: var(--mono);
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
   background: var(--ink);
   color: #fff;
@@ -214,13 +217,26 @@ h1, h2, h3, h4 {
   letter-spacing: .04em;
 }
 
+.header-phone .material-icons {
+  font-size: 16px;
+}
+
 .header-line {
-  font-size: 13px;
-  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: 600;
   border: 1.5px solid var(--border);
-  padding: 6px 14px;
+  padding: 7px 14px;
   border-radius: var(--radius-s);
-  color: var(--text-2);
+}
+
+.header-line img {
+  height: 22px;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
 }
 
 .menu-toggle {
@@ -447,7 +463,7 @@ h1, h2, h3, h4 {
 .site-footer {
   background: var(--ink);
   color: rgba(255,255,255,.75);
-  padding: 40px 0 24px;
+  padding: 40px 0 160px;
 }
 
 .footer-inner {
@@ -526,12 +542,14 @@ h1, h2, h3, h4 {
   border-radius: 50%;
   background: var(--bg);
   border: 1.5px solid var(--border);
-  color: var(--text-2);
-  font-size: 11px;
-  font-weight: 600;
   box-shadow: 0 3px 12px rgba(0,0,0,.1);
   transition: transform .15s;
-  letter-spacing: .04em;
+  overflow: hidden;
+}
+.floating-line img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
 }
 .floating-line:hover { transform: scale(1.06); }
 
