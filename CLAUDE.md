@@ -19,7 +19,7 @@ js/main.js          ← 単一スクリプト
 img/logo.jpg            ← ロゴ (42×42px)。赤を解析し --brand の起点に
 img/fv_pc_dummy.webp    ← トップ FV（PC・横長／仮）
 img/fv_sp_dummy.webp    ← トップ FV（SP・縦長／仮）
-img/fv02.webp           ← guide / price / faq の page-hero 背景（呉須フィルター下／仮）
+img/fv02.webp           ← guide/price/faq の page-hero 背景 ＋ 全ページ footer-cta カード背景（いずれも呉須フィルター下／仮）
 img/profile_dummy.webp  ← 代表写真（about カバー・プロフィール欄／仮・生成AI）
 img/strecher.webp · wheelchair.webp · oxygen_tank.jpg · vacume.jpg · vehicle.jpg ← guide 機材カード背景（仮・「仮挿入」キャプション付き）
 img/LINE_Brand_icon.png ← ヘッダー LINE CTA（`.header-line`・アイコンのみ 42px 正方形）に使用
@@ -51,8 +51,18 @@ sips -c <高さ> <幅> --cropOffset <y> <x> /tmp/out.png --out /tmp/crop.png   #
 
 - リモート `canp` = `Tokyo-Mate-Kikaku/nusamai-taxi-canp`（**Public**）の `main` が Pages ソース。公開 URL: `https://tokyo-mate-kikaku.github.io/nusamai-taxi-canp/`
 - **CLAUDE.md は公開リポジトリに含めない**。`canp/main` は orphan スナップショット由来で、ローカル `main`（リモート `origin` = `nusamai-taxi`）とは**別履歴**
-- 反映手順：①ローカル `main` に通常コミット → ②`canp/main` の上に「CLAUDE.md を除いた現状ツリー」を増分コミットして push（force-push 不要）。push 後 Pages が自動再ビルド（1–2分、`gh api repos/Tokyo-Mate-Kikaku/nusamai-taxi-canp/pages/builds/latest` で状態確認）
+- 反映手順：①ローカル `main` に通常コミット → ②`canp/main` の上に「CLAUDE.md を除いた現状ツリー」を増分コミットして push（force-push 不要）。`git checkout main -- .` は**追加/更新のみで削除を反映しない**ので、ファイル削除があった回は対象を明示 `git rm --cached` してから commit すること（`git diff --stat main _canp_push` が CLAUDE.md のみになるか検証）
+- push 後 Pages が自動再ビルド（1–2分）。**`pages/builds/latest` API はコミット反映が遅延・不正確なことがある**ため、反映確認は公開 URL の**実コンテンツを `curl` で検証**する（変更した文言・CSS を grep）
 - 全ページに `noindex` 付与済み（検索除外・URL 直アクセスは可）
+
+## FAQ 確認用 PDF（クライアント校正物）
+
+faq の Q&A を **A4・1ページ**の PDF にまとめてクライアント確認用に出力する運用がある。サイト本体とは別の印刷用 HTML を作り、Chrome の `--print-to-pdf` でデスクトップに出力：
+
+- 印刷用 HTML（`/tmp/faq_print.html` 等）に `@page { size: A4; margin }`、2段組（`column-count: 2` ＋ `.qa { break-inside: avoid }`）。サイト配色を踏襲（呉須藍の帯見出し／Q.＝藍・A.＝赤）
+- `"$CHROME" --headless=new --no-pdf-header-footer --virtual-time-budget=5000 --print-to-pdf=<出力> file://<印刷HTML>`（webフォント読込のため virtual-time を確保）
+- 出力先はデスクトップ（`~/Desktop/福祉タクシーぬさまい_FAQ確認用.pdf`）。PDF は**リポジトリ管理外**（コミット/デプロイ不要）
+- 検証：`mdls -name kMDItemNumberOfPages`（1ページ確認）＋ `sips -s format png` でラスタライズ目視。**faq.html を更新したら PDF も再出力**して内容を一致させる
 
 ## CSS Architecture
 
@@ -104,11 +114,17 @@ CDN 依存（各ページ `<head>` に記載）:
 - **Timeline**: 本当に順序のある経歴（about.html）のみ `<ol class="timeline">` で呉須ノード付きの年表に。並列の「3つの理由」は番号を廃し provenance ラベル（消防本部認定 / 建設現場仕込み / 重機操作仕込み）に
 - **Mobile menu = overlay（レイアウトシフトなし）**: 展開時 `.header-inner:has(.open)` を `position: absolute` overlay にし、`.site-header { min-height: 68px }` でバー高を確保 → 下のコンテンツを押し下げない。`flex-wrap` + `order` で **CTA→ナビ**の順に縦積み。`.header-logo { min-height: 68px }` でロゴの縦シフトを防止。ナビ文字は PC 13px（横並び維持のため `white-space: nowrap`）／モバイル展開時のみ 16px
 - **柔らかい曲線の区切り** (`.wave-down`): CSS mask の SVG 波で、soft↔白セクション境界に「ところどころ」適用。色は上セクションの地色（`--wave-color` で上書き可。faq は白→soft なので `var(--bg)`）。柿釉ブラシと同じ手仕事の揺らぎを非対称パスで
-- **page-hero 呉須版** (`.page-hero-accent`): guide / price / faq の3ページ。**最背面に FV 写真(`fv02.png` cover)**、その上に呉須カラーフィルター（`color-mix(in srgb, var(--accent-dark) 80%, transparent)`）＋斜めハッチ＋右上 radial 光沢を重ね、白文字。1要素の `background-image` 多層（写真＝最背面、フィルター/ハッチ/光沢＝前面）で表現。フィルター濃度は 80%（写真を見せたいなら下げ、文字くっきりなら上げる）。トップ FV(`.hero`) は別実装で `<picture>` 出し分け
+- **FV写真＋呉須フィルターの多層背景**（共通手法）: 1要素の `background-image` を多層化し、**最背面に FV 写真(`fv02.webp` cover)**、その上に呉須カラーフィルター（`color-mix(in srgb, <accent系> N%, transparent)`）を重ねて地色から際立たせる。使用箇所：
+  - **page-hero 呉須版** (`.page-hero-accent`、guide/price/faq)：フィルタ `--accent-dark` 80% ＋斜めハッチ＋右上 radial 光沢、白文字。続くセクションと色差
+  - **footer-cta**（下記）：フィルタ `--accent` 82%
+  - 濃度は写真を見せたいなら下げ、文字くっきりなら上げる。トップ FV(`.hero`) は別実装で `<picture>` 出し分け
 - **Hero FV / 写真**: トップ FV は `<picture>` で PC(`fv_pc_dummy`)/SP(`fv_sp_dummy`) を出し分け。about カバー・プロフィール欄は `profile_dummy` を `background-image: cover` で表示。service-icon は土色(`--bg-alt`)丸＋呉須グリフ
 - **LINE link**: 全 LINE 導線（ヘッダー/ヒーロー/フッターCTA・全11箇所）は `https://lin.ee/9xXF9nc`（`target="_blank" rel="noopener noreferrer"`）。電話は `tel:08047694071`
 - **`--mono` は Lato**: 等幅ではなくラベル・バッジ・数字に使うアクセントフォントとして運用
 - **Floating CTA は電話のみ** (`.floating-cta` > `.floating-phone`): LINE ボタンは削除済み（`.floating-line` の CSS は dead として残存）。重なり対策で `.site-footer { padding: 40px 0 100px }`（CTA 56px + bottom 24px + `env(safe-area-inset-bottom)`）
+- **Footer CTA** (`.footer-cta`、全5ページ共通): 結びの CTA カード。背景は **FV写真(`fv02.webp` cover) ＋ 呉須藍フィルター `color-mix(--accent 82%, transparent)` の多層 background-image**（上記の共通手法）で糠白/白の地色から際立たせる。白文字＋白の電話番号、行動色の赤は内側の `.btn-dark`（電話する）が担う。多層 `box-shadow`（墨の接地＋藍の近接/中距離＋上端 inset 白ハイライト）で控えめなリフト、角丸 `--radius-l`。背景は border-radius に内接クリップ
+- **資格バッジ/ラベル色**: about・index の保有資格 `.badge` は**呉須藍地＋白文字の塗りバッジ**、guide チェックリストの `.check-mark` も呉須藍。FAQ 回答 `.accordion-panel` は質問と同じ `--text` 濃度（薄い `--text-2` にしない）
+- **「仮挿入」プレースホルダー**: 仮の実画像には「仮挿入」キャプションを重ねる。機材カードは `.equip-img` 内の `<span>`、トップの FV・代表写真は `.ph-tag`（親を `position:relative` にして絶対中央配置の白ピル・`pointer-events:none`）。正式画像差し替え時はキャプションを外す
 - **Hamburger → ×印**: `.menu-toggle[aria-expanded="true"]` で3本の `span` を `transform`（中央2本を寄せて回転）＋中央 `opacity:0` の×印に。アニメは `transform`/`opacity` のみ・200ms・`ease-out`、`prefers-reduced-motion` で無効化。JS は `aria-expanded` と `aria-label`（開く⇄閉じる）をトグル
 - **Accordion expanded border**: `box-shadow: inset 3px 0 0` を使用（`border-left` はレイアウトシフトを起こすため）
 - **Copyright fallback**: `<span id="copyright-year">2026</span>` — JS 非対応環境のフォールバック
@@ -125,3 +141,4 @@ CDN 依存（各ページ `<head>` に記載）:
 
 - **FAQ ラベルの使い分け**: ヘッダー/フッターのナビリンクは「**よくある質問**」、faq ページ自身の `<title>`/`<h1>`/meta description は「**よくあるご質問**」（ナビは簡潔に、文書見出しは正式表記）
 - **page-hero**: 中ページの見出し帯は `.page-hero`。guide / price / faq は `.page-hero-accent` を併記して FV写真＋呉須フィルター化、about のみ `.about-cover`（大判写真）
+- **about ページ構成**: about-cover → はじめに → インタビュー(Q&A) → 益子町への想い → プロフィール（写真＋`.timeline`＋資格 `.badge`）→ **事業所概要**（`.area-detail`/`.area-row` の `<dl>`：屋号/代表者/住所/電話番号/許認可/開業年月日。guide 営業エリアと同コンポーネント）→ footer-cta
