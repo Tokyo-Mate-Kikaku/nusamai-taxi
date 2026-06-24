@@ -17,13 +17,17 @@ faq.html            ← よくあるご質問
 css/style.css       ← 単一スタイルシート
 js/main.js          ← 単一スクリプト
 img/logo.jpg            ← ロゴ (42×42px)。赤を解析し --brand の起点に
-img/fv_pc_dummy.webp    ← トップ FV（PC・横長／仮）
+img/favicon.png         ← favicon（全5ページ `<link rel="icon">`）
+img/fv_pc_dummy.webp    ← トップ FV（PC・横長／仮）＋ index の OGP/Twitter 画像（絶対URLで参照）
 img/fv_sp_dummy.webp    ← トップ FV（SP・縦長／仮）
 img/fv02.webp           ← guide/price/faq の page-hero 背景 ＋ 全ページ footer-cta カード背景（いずれも呉須フィルター下／仮）
 img/profile_dummy.webp  ← 代表写真（about カバー・プロフィール欄／仮・生成AI）
+img/profile_dummy_sm.webp ← index「代表のストーリー」欄の小サイズ代表写真（仮）
 img/strecher.webp · wheelchair.webp · oxygen_tank.jpg · vacume.jpg · vehicle.jpg ← guide 機材カード背景（仮・「仮挿入」キャプション付き）
 img/LINE_Brand_icon.png ← ヘッダー LINE CTA（`.header-line`・アイコンのみ 42px 正方形）に使用
-img/line_icon.png       ← 未使用素材
+img/line_qr.png         ← footer-cta の LINE QR（`.btn-line-qr`・PC/tablet のみ。モバイルはアイコンに切替）。全5ページ
+img/payment method.png  ← price のお支払い方法欄・取り扱いクレジットカードブランド画像（`.card-brand-img`）
+img/line_icon.png · L_gainfriends_2dbarcodes_GW.png ← 未使用素材
 ```
 
 配置済み画像（いずれも仮）：トップ FV(`fv_*_dummy`)・about(`profile_dummy`)・page-hero 背景(`fv02`)・guide 機材カード(`strecher` / `wheelchair` / `oxygen_tank` / `vacume` / `vehicle`)。これら以外（hero の `.img-ph` 等）は CSS の斜線プレースホルダーのまま。**大判写真は WebP（品質82。機材カードは長辺1000pxへリサイズ）で軽量化済み**（PNG 原本は削除）。新規写真も同方針で WebP 化推奨。
@@ -110,7 +114,7 @@ CDN 依存（各ページ `<head>` に記載）:
 - **見出しの署名**: `.section-title::after` に柿釉ブラシのインライン SVG（data URI）を敷く。益子焼の釉がけを想起させる唯一の装飾署名。色は `--brand`
 - **LINE icon**: ヘッダー `.header-line` は `img/LINE_Brand_icon.png`（公式・緑角丸）の**アイコンのみ・42px 正方形**（電話CTA `.header-phone` の実高さ 42px に合わせた固定サイズ。モバイル展開時は中央配置）。**hero / footer-cta の LINE ボタン（`.btn-line`）は Material Icons の `chat_bubble` ＋テキスト**。floating CTA は電話のみ（LINE 削除済み）
 - **Phone icon**: Material Icons の `call` を `<span class="material-icons">call</span>` で使用
-- **Button system**: `.btn-dark`＝柿赤の主CTA（電話）/ `.btn-line`＝LINE緑 / `.btn-accent`＝呉須藍のゴースト（ナビ「→」リンク）。LINE と「→」リンクは色で峻別
+- **Button system**: `.btn-dark`＝柿赤の主CTA（電話）/ `.btn-line`＝LINE緑 / `.btn-accent`＝呉須藍のゴースト（ナビ「→」リンク）/ `.btn-accent-solid`＝呉須ベタ（hero の LINE）/ `.btn-accent-fill`＝呉須ベタ（既定）→ hover/active でゴーストに反転（index「ご利用案内を見る」専用。`.btn-accent` を共有する「代表のストーリー」と差別化するため新設）。LINE と「→」リンクは色で峻別
 - **Timeline**: 本当に順序のある経歴（about.html）のみ `<ol class="timeline">` で呉須ノード付きの年表に。並列の「3つの理由」は番号を廃し provenance ラベル（消防本部認定 / 建設現場仕込み / 重機操作仕込み）に
 - **Mobile menu = overlay（レイアウトシフトなし）**: 展開時 `.header-inner:has(.open)` を `position: absolute` overlay にし、`.site-header { min-height: 68px }` でバー高を確保 → 下のコンテンツを押し下げない。`flex-wrap` + `order` で **CTA→ナビ**の順に縦積み。`.header-logo { min-height: 68px }` でロゴの縦シフトを防止。ナビ文字は PC 13px（横並び維持のため `white-space: nowrap`）／モバイル展開時のみ 16px
 - **柔らかい曲線の区切り** (`.wave-down`): CSS mask の SVG 波で、soft↔白セクション境界に「ところどころ」適用。色は上セクションの地色（`--wave-color` で上書き可。faq は白→soft なので `var(--bg)`）。柿釉ブラシと同じ手仕事の揺らぎを非対称パスで
@@ -128,7 +132,9 @@ CDN 依存（各ページ `<head>` に記載）:
 - **Hamburger → ×印**: `.menu-toggle[aria-expanded="true"]` で3本の `span` を `transform`（中央2本を寄せて回転）＋中央 `opacity:0` の×印に。アニメは `transform`/`opacity` のみ・200ms・`ease-out`、`prefers-reduced-motion` で無効化。JS は `aria-expanded` と `aria-label`（開く⇄閉じる）をトグル
 - **Accordion expanded border**: `box-shadow: inset 3px 0 0` を使用（`border-left` はレイアウトシフトを起こすため）
 - **Copyright fallback**: `<span id="copyright-year">2026</span>` — JS 非対応環境のフォールバック
-- **noindex**: 全ページに `<meta name="robots" content="noindex">` — クライアント確認用サイト
+- **noindex**: 全ページに `<meta name="robots" content="noindex">` — クライアント確認用サイト。**本番公開時は noindex を外す**。OGP/JSON-LD は SNS シェアのカード表示には効くが、検索インデックスは noindex で抑止中
+- **favicon**: 全5ページの `<head>`（robots メタ直後）に `<link rel="icon" type="image/png" href="img/favicon.png">`
+- **SEO/構造化データ（index のみ）**: `<link rel="canonical">` ＋ OGP 一式（`og:type/site_name/title/description/url/image/locale`）＋ Twitter Card（`summary_large_image`）＋ JSON-LD `TaxiService`（provider に `LocalBusiness`：住所・電話 `+81-80-4769-4071`・代表者・開業日、areaServed に益子町／栃木県）。**絶対URLの基準は公開先（GitHub Pages の `…/nusamai-taxi-canp/`）／og:image は `fv_pc_dummy.webp`（仮）**。正式FV差し替え・独自ドメイン移行時は og:url/og:image/canonical と JSON-LD の URL を更新。description は **120字以内**で運用（現状97字）
 
 ## Responsive Breakpoints
 
