@@ -75,7 +75,7 @@ CSS Custom Properties as the sole design token system (`css/style.css`):
 益子焼（Mashiko-yaki）の釉薬に接地したパレット。柿釉=brand赤、呉須=accent藍、黒釉=ink墨、糠白=bg-soft。
 
 ```css
---serif:      'Shippori Mincho', serif         /* 見出し：旧字系明朝 */
+--serif:      'Shippori Mincho', serif        /* 見出し：旧字系明朝 */
 --sans:       'Zen Kaku Gothic New', sans-serif /* 本文：ヒューマニスト */
 --mono:       'Lato', sans-serif                /* ラベル・数字・バッジ */
 
@@ -99,8 +99,9 @@ CSS Custom Properties as the sole design token system (`css/style.css`):
 フォントサイズ: **本文 16px ベースライン（Google モバイル推奨）**。本文・カード本文・操作系(`.btn`)・テーブルは 16px。**料金表(`.price-table`)のみ 15px**（要望で一段小さく）。見出しジャンプ率は 16(本文)→18–19(カード見出し `.reason-card`/`.service-card`/`.qa-question h3` 等)→20(`.faq-section-title`)→22(`.profile-name`)→clamp 22–28(`.section-title`)→clamp 22–34(`.hero-catch`)。**16px 未満を意図的に残す**のは mono のマイクロラベル/バッジ、キャプション、フッター細字、PCナビ(13px・横一列維持)のみ。
 
 CDN 依存（各ページ `<head>` に記載）:
-- Google Fonts: `Shippori+Mincho`, `Zen+Kaku+Gothic+New`, `Lato`
+- Google Fonts: `Shippori+Mincho:wght@700`（`text=` サブセット・662文字・全5ページ共通URL）, `Zen+Kaku+Gothic+New`, `Lato`
 - Google Material Icons: `https://fonts.googleapis.com/icon?family=Material+Icons`
+- **フォント更新時の注意**: HTML を編集して使用文字が増えた場合は、全5ページから文字を再抽出して `text=` パラメーターを更新すること（Python スクリプトで抽出→URL エンコード→全5ページ一括置換）
 
 ## JavaScript Patterns (`js/main.js`)
 
